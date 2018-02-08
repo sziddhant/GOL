@@ -1,6 +1,7 @@
 var stop=0;
 var x=400;
 var row=x;
+var count=0;
 var grid = create_ar(x);
 var tgrid= create_ar(x);
 fillRandom();
@@ -37,6 +38,7 @@ function draw_grid() {
 
 function update_grid() {
 tgrid=grid;
+//count++;
     for(var j=1;j<x;j++){
         for(var k=1;k<x;k++){
         var n=0;
@@ -86,6 +88,9 @@ grid=tgrid;
 
 function run_main() {
    //stop=0;
+    count++;
+    document.getElementById("counter").innerHTML =
+        "Count = " + count;
 
         draw_grid();
         update_grid();
@@ -95,6 +100,7 @@ function run_main() {
 
 }
 function run() {
+
     stop=0;
     draw_grid();
     update_grid();
@@ -124,7 +130,9 @@ function fillRandom() {
 
 
 function run2() {
-
+    count++;
+    document.getElementById("counter").innerHTML =
+        "Count = " + count;
     draw_grid();
     update_grid();
     framea();
