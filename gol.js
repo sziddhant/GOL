@@ -1,4 +1,9 @@
 
+var x=400;
+var row=x;
+var grid = create_ar(x);
+var tgrid= create_ar(x);
+fillRandom();
 
 
 function create_ar(row) {
@@ -8,32 +13,32 @@ function create_ar(row) {
     {
         ar[i]=[];
     }
-return ar;
+    return ar;
 
 }
 function draw_grid() {
-var canvas=document.getElementById("canvas1");
-var ctx = canvas.getContext("2d");
-ctx.clearRect(0,0,x,x);
+    var canvas=document.getElementById("canvas1");
+    var ctx = canvas.getContext("2d");
+    ctx.clearRect(0,0,x,x);
 
-for (var j=1;j<row;j++){
-    for(var k=1;k<row;k++){
+    for (var j=1;j<x;j++){
+        for(var k=1;k<x;k++){
 
-        if (grid[j][k]===1)
-        {
-            ctx.fillStyle="#000";
-            ctx.fillRect(j,k,1,1);
+            if (grid[j][k]===1)
+            {
+                ctx.fillStyle="#8aff7c";
+                ctx.fillRect(j,k,1,1);
+            }
+
         }
 
     }
-
-}
 }
 
 function update_grid() {
 tgrid=grid;
-    for(var j=1;j<row;j++){
-        for(var k=1;k<row;k++){}
+    for(var j=1;j<x;j++){
+        for(var k=1;k<x;k++){
         var n=0;
         //top
         n+=grid[j-1][k-1];//1
@@ -49,7 +54,7 @@ tgrid=grid;
 
 
         if((grid[j][k]===0)&&n>=3){
-          tgrid[j][k]=1;
+            tgrid[j][k]=1;
         }
         else if(grid[j][k]===1)
         {
@@ -64,19 +69,18 @@ tgrid=grid;
                     tgrid[j][k]=1;//live another round
                     break;
                 default:
-                    tgrid[j][k]=0//die overpopulation
+                    tgrid[j][k]=0;//die overpopulation
 
             }
 
 
-            //merge grids
+
 
         }
 
 
-        grid=tgrid;
-    }
-
+    }}
+grid=tgrid;
 }
 
 
@@ -85,32 +89,41 @@ function run() {
     update_grid();
     requestAnimationFrame(run);
 
+
 }
 
 function fillRandom() {
-    for (var j = 100; j < x - 100; j++) {
-        for (var k = 100; k < x - 100; k++) {
-            grid[j][k] = Math.round(Math.random());
-
+    for (var j = 0; j < x; j++) {
+        for (var k = 0; k < x; k++) {
+            var rawRandom = Math.random();
+            var improvedNum = (rawRandom * 2);
+            var randomBinary = Math.floor(improvedNum);
+            if (randomBinary === 1) {
+                grid[j][k] = 1;
+            } else {
+                grid[j][k] = 0;
+            }
         }
     }
-    tgrid=grid;
 }
 
-var x=400;
-var row=x;
-var grid = create_ar(x);
-var tgrid= create_ar(x);
-fillRandom();
+
+
 
 
 function run2() {
 
     draw_grid();
     update_grid();
- framea();
+    framea();
 }
 
 function framea() {
-    requestAnimationFrame(run);
+    requestAnimationFrame(run3);
 }
+function run3() {
+
+    draw_grid();
+    update_grid();}
+
+
