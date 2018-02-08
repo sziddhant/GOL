@@ -1,4 +1,4 @@
-
+var stop=0;
 var x=400;
 var row=x;
 var grid = create_ar(x);
@@ -84,14 +84,26 @@ grid=tgrid;
 }
 
 
-function run() {
-    draw_grid();
-    update_grid();
-    requestAnimationFrame(run);
+function run_main() {
+   //stop=0;
+
+        draw_grid();
+        update_grid();
+        if(stop===0)
+        requestAnimationFrame(run_main);
 
 
 }
+function run() {
+    stop=0;
+    draw_grid();
+    update_grid();
+    requestAnimationFrame(run_main)
 
+}
+function stopp() {
+    stop=1;
+}
 function fillRandom() {
     for (var j = 0; j < x; j++) {
         for (var k = 0; k < x; k++) {
