@@ -22,13 +22,13 @@ function draw_grid() {
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0,0,x,x);
 
-    for (var j=1;j<x;j++){
-        for(var k=1;k<x;k++){
+    for (var j=(1);j<x-1;j+=4){
+        for(var k=(1);k<x-1;k+=4){
 
             if (grid[j][k]===1)
             {
                 ctx.fillStyle="#8aff7c";
-                ctx.fillRect(j,k,1,1);
+                ctx.fillRect(j,k,4,4);
             }
 
         }
@@ -96,6 +96,8 @@ function run_main() {
         update_grid();
         if(stop===0)
         requestAnimationFrame(run_main);
+
+
 
 
 }
